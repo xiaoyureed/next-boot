@@ -1,0 +1,30 @@
+spring:
+    application:
+        name: spring-boot-react
+    datasource:
+        #url: jdbc:h2:mem:mydb
+        url: jdbc:h2:file:./mydb
+        username: sa
+        password: 
+        driverClassName: org.h2.Driver
+    jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+        generate-ddl: true
+        hibernate:
+            ddl-auto: create-drop
+    h2:
+        console:
+            enabled: true
+            path: /h2-console
+            settings:
+                web-allow-others: true
+    #https://www.baeldung.com/spring-boot-customize-jackson-objectmapper
+    jackson:
+        default-property-inclusion: non-null
+
+# Setup the logging configuration to show sql and prepared statement
+# https://www.baeldung.com/sql-logging-spring-boot
+logging:
+    level:
+        '[org.hibernate.sql]': debug
+        '[org.hibernate.type.descriptor.sql.BasicBinder]': trace
