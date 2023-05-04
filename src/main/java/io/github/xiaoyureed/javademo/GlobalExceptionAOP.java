@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import io.github.xiaoyureed.javademo.base.BaseResponse;
+import io.github.xiaoyureed.javademo.base.Response;
 import lombok.extern.slf4j.Slf4j;
 
 @RestControllerAdvice
@@ -13,11 +13,11 @@ import lombok.extern.slf4j.Slf4j;
 public class GlobalExceptionAOP {
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<BaseResponse<?>> handleError(Exception exception) {
+    public ResponseEntity<Response<?>> handleError(Exception exception) {
         log.error(exception.getMessage(), exception);
 
-        return new ResponseEntity<BaseResponse<?>>(
-                BaseResponse.error(exception.getMessage()),
+        return new ResponseEntity<Response<?>>(
+                Response.error(exception.getMessage()),
                 HttpStatus.OK);
     }
 }

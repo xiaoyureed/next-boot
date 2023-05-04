@@ -13,27 +13,26 @@ import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @MappedSuperclass
-public abstract class BaseEntity implements Serializable{
+public abstract class AbstractEntity implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    protected String id;
+    private String id;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at", updatable = false)
     @CreationTimestamp
+    // @CreatedDate
     @Temporal(TemporalType.DATE)
-    protected LocalDate createdAt;
+    private LocalDate createdAt;
 
     @UpdateTimestamp
+    // @LastModifiedDate
     @Temporal(TemporalType.DATE)
     @Column(name = "updated_at")
-    protected LocalDate updatedAt;
+    private LocalDate updatedAt;
+
 }

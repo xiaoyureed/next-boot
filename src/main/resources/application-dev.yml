@@ -25,6 +25,8 @@ spring:
 # Setup the logging configuration to show sql and prepared statement
 # https://www.baeldung.com/sql-logging-spring-boot
 logging:
+    # config: classpath:/logback-${spring.profiles.active}.xml
+    config: classpath:log/logback-dev.xml
     level:
         '[org.hibernate.sql]': debug
         '[org.hibernate.type.descriptor.sql.BasicBinder]': trace

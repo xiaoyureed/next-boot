@@ -9,20 +9,20 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 @JsonInclude(Include.NON_NULL)
-public class BaseResponse<T> {
+public class Response<T> {
     private Integer code;
     private String error;
     private T data;
 
-    public static <T> BaseResponse<T> ok(T data) {
-        return new BaseResponse<>(0, "", data);
+    public static <T> Response<T> ok(T data) {
+        return new Response<>(0, "", data);
     }
 
-    public static BaseResponse<?> ok() {
-        return new BaseResponse<>(0, "", null);
+    public static Response<?> ok() {
+        return new Response<>(0, "", null);
     }
 
-    public static BaseResponse<?> error(String message) {
-        return new BaseResponse<>(1, message, null);
+    public static Response<?> error(String message) {
+        return new Response<>(1, message, null);
     }
 }

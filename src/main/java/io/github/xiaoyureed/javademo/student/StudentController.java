@@ -7,19 +7,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.github.xiaoyureed.javademo.base.BaseResponse;
+import io.github.xiaoyureed.javademo.base.Response;
 
 @RestController
 @RequestMapping("/api/students")
 public class StudentController {
-    private StudentRepository studentRepository;
+   
+    private StudentService studentService;
 
-    public StudentController(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
     }
 
     @PostMapping({ "", "/" })
-    public ResponseEntity<BaseResponse<List<Student>>> findAll() throws Exception {
-        return ResponseEntity.ok(BaseResponse.ok(studentRepository.findAll()));
+    public ResponseEntity<Response<List<Student>>> findAll() throws Exception {
+        return ResponseEntity.ok(Response.ok(studentService.findAll()));
     }
+
 }
