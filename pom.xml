@@ -10,9 +10,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>io.github.xiaoyureed</groupId>
-    <artifactId>java-demo</artifactId>
+    <artifactId>next-boot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>java-demo</name>
+    <name>next-boot</name>
     <description>Demo for packaging react app as static content and put into spring boot</description>
     <properties>
         <java.version>17</java.version>
