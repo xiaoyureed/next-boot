@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+git stash -qku
+
+./mvnw clean test
+RESULT=$?
+
+git stash pop -q
+
+exit $RESULT
+
