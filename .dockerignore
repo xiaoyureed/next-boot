@@ -1,0 +1,17 @@
+idea/
+.mvn/
+.vscode/
+.next/
+node_modules/
+out/
+githooks/
+log/
+src/test/
+target/
+!target/*.jar
+.git/
+.gitignore
+mvnw
+mvnw.cmd
+*.db
+readme.md

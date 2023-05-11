@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+  app:
+    build: ./
+    container_name: nextboot_app
+    ports:
+      - "8080:8080"
+
+    volumes:
+      - nextboot_app:/tmp
+    environment:
+      - TZ-Asia/Shanghai
+  db:
+    image: postgres:alpine
+    container_name: nextboot_postgres
+    volumes:
+      - nextboot_postgres:/var/lib/postgresql/data
+#    ports:
+#      - "5432:5432"
+
+volumes:
+  nextboot_app:
+  nextboot_postgres:
