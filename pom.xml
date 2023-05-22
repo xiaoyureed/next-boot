@@ -180,7 +180,7 @@
                         <goals>
                             <goal>install-node-and-yarn</goal>
                         </goals>
-                        <!-- optional, the default value is like this -->
+                        <!-- optional, also the default value -->
                         <phase>generate-resources</phase>
                     </execution>
 
@@ -239,6 +239,16 @@
                 </executions>
             </plugin>
 
+<!--            ./mvnw compile jib:build -Dimage=xxx -->
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.3.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.graalvm.buildtools</groupId>
+                <artifactId>native-maven-plugin</artifactId>
+            </plugin>
         </plugins>
     </build>
 

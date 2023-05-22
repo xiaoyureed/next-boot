@@ -1,12 +1,13 @@
-FROM eclipse-temurin:17-jre-ubi9-minimal as builder
-ARG JAR_FILE=target/*.jar
+FROM eclipse-temurin:17-jre-focal as builder
+#docker image prune --filter label=stage=builder
+LABEL stage=builder
 WORKDIR application
-COPY ${JAR_FILE} application.jar
+COPY target/next-boot.jar application.jar
 RUN java -Djarmode=layertools -jar application.jar extract
 
 ################
 
-FROM eclipse-temurin:17-jre-ubi9-minimal
+FROM gcr.io/distroless/java17-debian11:latest
 MAINTAINER xiaoyureed <rainx000@qq.com>
 WORKDIR /application
 COPY --from=builder application/dependencies/ ./
@@ -19,8 +20,9 @@ ENV JVM_OPTS="-Xmx256m -Xms256m" \
     SPRING_CONFIG_LOCATION="optional:classpath:/;optional:file:/root/.halo2/" \
     TZ=Asia/Shanghai
 
-RUN ln -sf /usr/share/zoneinfo/$TZ /etc/localtime \
-    && echo $TZ > /etc/timezone \
+#RUN ln -sf /usr/share/zoneinfo/$TZ /etc/localtime \
+#    && echo $TZ > /etc/timezone
 
 EXPOSE 8080
+
 ENTRYPOINT ["sh", "-c", "java ${JVM_OPTS} -Djava.security.egd=file:/dev/./urandom org.springframework.boot.loader.JarLauncher ${0} ${@}"]
